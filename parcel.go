@@ -20,6 +20,9 @@ func (s ParcelStore) Add(p Parcel) (int, error) {
 		sql.Named("status", p.Status),
 		sql.Named("address", p.Address),
 		sql.Named("created_at", p.CreatedAt))
+	if err != nil {
+		return 0, err
+	}
 
 	// верните идентификатор последней добавленной записи
 	id, err := res.LastInsertId()
